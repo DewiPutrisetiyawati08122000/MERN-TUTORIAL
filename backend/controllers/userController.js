@@ -54,13 +54,18 @@ const loginUser = asyncHandler(async (req, res) => {
         res.status(400)
         throw Error('invalid credentials')
     }
-
-    res.json({message: "Login User"})
 })
 
 const getMe = asyncHandler(async (req, res) => {
-    res.json({message: "User data display"})
-})
+    const { _id, name, email } = await User.findById(req.user.id);
+
+    res.status(200).json({
+        id: _id,
+        name,
+        email,
+    });
+    
+});
 
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
