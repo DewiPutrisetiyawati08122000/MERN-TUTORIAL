@@ -1,5 +1,6 @@
 const getGoals = (req,res) => {
-    res.status(200).json({message: 'Get Goals'})
+    res.status(200)
+    throw new Error('Please add text field')
 }
 
 const setGoal = (req,res) => {
